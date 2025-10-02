@@ -612,15 +612,42 @@ button:disabled {
   }
 }
 
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .auth-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--secondary) / 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--background)) 0%,
+    hsl(var(--primary) / 0.05) 25%,
+    hsl(var(--secondary) / 0.05) 50%,
+    hsl(var(--accent) / 0.05) 75%,
+    hsl(var(--background)) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
   overflow: hidden;
 }
 
 .dark .auth-background {
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--secondary) / 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(222.2 84% 4.9%) 0%,
+    hsl(var(--primary) / 0.12) 25%,
+    hsl(var(--secondary) / 0.12) 50%,
+    hsl(var(--accent) / 0.12) 75%,
+    hsl(222.2 84% 4.9%) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
 }
 
 .auth-gradient-orb {

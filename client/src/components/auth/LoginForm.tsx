@@ -18,6 +18,8 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import TwoFactorModal from './TwoFactorModal';
+import ForgotPasswordModal from './ForgotPasswordModal';
+import TwoFactorRecoveryModal from './TwoFactorRecoveryModal';
 
 import { languages } from '@/pages/auth';
 
@@ -63,6 +65,8 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showTwoFactor, setShowTwoFactor] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [show2FARecovery, setShow2FARecovery] = useState(false);
 
   // Update country code when language changes
   useEffect(() => {
@@ -225,9 +229,13 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                       <div className="flex items-center justify-between">
                         <Label htmlFor="password">{t('auth.password')} *</Label>
                         {!isRegister && (
-                          <a href="#" className="text-xs text-primary hover:underline">
+                          <button
+                            type="button"
+                            onClick={() => setShowForgotPassword(true)}
+                            className="text-xs text-primary hover:underline"
+                          >
                             {t('auth.forgotPassword')}
-                          </a>
+                          </button>
                         )}
                       </div>
                       <div className="relative">
@@ -327,16 +335,19 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                       <Label htmlFor="phone">{t('auth.phone')} *</Label>
                       <div className="flex gap-2">
                         <Select value={countryCode} onValueChange={setCountryCode}>
-                          <SelectTrigger className="w-[100px]">
+                          <SelectTrigger className="w-[110px]">
                             <SelectValue>
-                              {countryCodes.find(c => c.code === countryCode)?.flag || '🇧🇷'}
+                              <span className="flex items-center gap-1">
+                                <span className="text-xl">{countryCodes.find(c => c.code === countryCode)?.flag || '🇧🇷'}</span>
+                                <span className="text-xs">{countryCode}</span>
+                              </span>
                             </SelectValue>
                           </SelectTrigger>
                           <SelectContent>
                             {countryCodes.map((country) => (
                               <SelectItem key={country.code} value={country.code}>
                                 <span className="flex items-center gap-2">
-                                  <span className="text-lg">{country.flag}</span>
+                                  <span className="text-xl">{country.flag}</span>
                                   <span className="text-xs">{country.code}</span>
                                 </span>
                               </SelectItem>
@@ -360,9 +371,13 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                       <div className="flex items-center justify-between">
                         <Label htmlFor="phone-password">{t('auth.password')} *</Label>
                         {!isRegister && (
-                          <a href="#" className="text-xs text-primary hover:underline">
+                          <button
+                            type="button"
+                            onClick={() => setShowForgotPassword(true)}
+                            className="text-xs text-primary hover:underline"
+                          >
                             {t('auth.forgotPassword')}
-                          </a>
+                          </button>
                         )}
                       </div>
                       <div className="relative">
@@ -456,7 +471,7 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
               )}
 
               {/* Toggle between login and register */}
-              <div className="text-center space-y-2">
+              <div className="text-center space-y-3 mt-4">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-border"></div>
@@ -470,8 +485,8 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
 
                 <Button
                   type="button"
-                  variant="outline"
-                  className="w-full text-sm"
+                  variant={isRegister ? 'default' : 'outline'}
+                  className="w-full text-sm font-semibold"
                   onClick={handleToggleMode}
                 >
                   {isRegister ? t('auth.hasAccount') + ' - ' + t('auth.login') : t('auth.noAccount') + ' - ' + t('auth.register')}
@@ -479,6 +494,13 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
               </div>
             </CardContent>
           </Card>
+
+          {/* Footer text for better visibility */}
+          <div className="text-center mt-4">
+            <p className="text-sm text-muted-foreground">
+              {isRegister ? 'Já possui uma conta?' : 'Não possui uma conta?'}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -494,8 +516,24 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
               description: t('dashboard.welcome'),
             });
           }}
+          onRecoveryClick={() => {
+            setShowTwoFactor(false);
+            setShow2FARecovery(true);
+          }}
         />
       )}
+
+      {/* Forgot Password Modal */}
+      <ForgotPasswordModal
+        isOpen={showForgotPassword}
+        onClose={() => setShowForgotPassword(false)}
+      />
+
+      {/* 2FA Recovery Modal */}
+      <TwoFactorRecoveryModal
+        isOpen={show2FARecovery}
+        onClose={() => setShow2FARecovery(false)}
+      />
     </>
   );
 }

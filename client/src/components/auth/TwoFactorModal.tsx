@@ -16,9 +16,10 @@ interface TwoFactorModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  onRecoveryClick?: () => void;
 }
 
-export default function TwoFactorModal({ isOpen, onClose, onSuccess }: TwoFactorModalProps) {
+export default function TwoFactorModal({ isOpen, onClose, onSuccess, onRecoveryClick }: TwoFactorModalProps) {
   const { verify2FA } = useAuth();
   const { t } = useI18n();
   const { toast } = useToast();
@@ -109,6 +110,17 @@ export default function TwoFactorModal({ isOpen, onClose, onSuccess }: TwoFactor
           <p className="text-sm text-muted-foreground mt-2">
             {t('auth.2fa.description')}
           </p>
+          
+          {onRecoveryClick && (
+            <Button
+              type="button"
+              variant="link"
+              onClick={onRecoveryClick}
+              className="text-xs text-warning hover:text-warning/80 mt-2"
+            >
+              Perdeu acesso ao código 2FA?
+            </Button>
+          )}
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">

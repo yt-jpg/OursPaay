@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import LoginForm from '@/components/auth/LoginForm';
 import ContractModal from '@/components/auth/ContractModal';
@@ -32,7 +31,7 @@ export default function AuthPage() {
   useEffect(() => {
     if (isAuthenticated) {
       const hasAcceptedContracts = localStorage.getItem('contractsAccepted');
-      
+
       if (!hasAcceptedContracts) {
         setShowContracts(true);
       } else {
@@ -149,19 +148,19 @@ export default function AuthPage() {
               size="icon"
               className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110 bg-background/80 backdrop-blur-sm"
             >
-              <span className="text-xl">{currentLanguage.flag}</span>
+              <span className="text-2xl">{currentLanguage.flag}</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-sm">
+          <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-sm border-border">
             {languages.map((lang) => (
               <DropdownMenuItem
                 key={lang.code}
                 onClick={() => changeLanguage(lang.code)}
-                className="flex items-center gap-2 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer hover:bg-muted text-foreground"
               >
-                <span className="text-lg">{lang.flag}</span>
-                <span>{lang.name}</span>
-                {language === lang.code && <span className="ml-auto text-primary">✓</span>}
+                <span className="text-xl">{lang.flag}</span>
+                <span className="text-foreground">{lang.name}</span>
+                {language === lang.code && <span className="ml-auto text-primary font-bold">✓</span>}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
