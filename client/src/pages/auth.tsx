@@ -69,9 +69,13 @@ export default function AuthPage() {
             variant="outline"
             size="icon"
             onClick={toggleTheme}
-            className="rounded-full"
+            className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110"
           >
-            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {theme === 'dark' ? (
+              <Sun className="h-5 w-5 text-amber-500" />
+            ) : (
+              <Moon className="h-5 w-5 text-blue-600" />
+            )}
           </Button>
         </div>
         <ContractModal
@@ -90,9 +94,13 @@ export default function AuthPage() {
           variant="outline"
           size="icon"
           onClick={toggleTheme}
-          className="rounded-full"
+          className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110"
         >
-          {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          {theme === 'dark' ? (
+            <Sun className="h-5 w-5 text-amber-500" />
+          ) : (
+            <Moon className="h-5 w-5 text-blue-600" />
+          )}
         </Button>
       </div>
       <LoginForm />

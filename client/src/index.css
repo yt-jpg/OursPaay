@@ -558,6 +558,38 @@ button:disabled {
   margin-left: 0.5rem;
 }
 
+/* Theme toggle glow effect */
+@keyframes greenGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px hsl(142.1 76.2% 36.3% / 0.3),
+                0 0 10px hsl(142.1 76.2% 36.3% / 0.2),
+                0 0 15px hsl(142.1 76.2% 36.3% / 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(142.1 76.2% 36.3% / 0.5),
+                0 0 20px hsl(142.1 76.2% 36.3% / 0.3),
+                0 0 30px hsl(142.1 76.2% 36.3% / 0.2);
+  }
+}
+
+.theme-toggle-glow {
+  animation: greenGlow 2s ease-in-out infinite;
+  border-color: hsl(142.1 76.2% 36.3% / 0.3);
+}
+
+.theme-toggle-glow:hover {
+  animation-duration: 1s;
+  border-color: hsl(142.1 76.2% 36.3% / 0.5);
+}
+
+.dark .theme-toggle-glow {
+  border-color: hsl(142.1 70.6% 45.3% / 0.4);
+}
+
+.dark .theme-toggle-glow:hover {
+  border-color: hsl(142.1 70.6% 45.3% / 0.6);
+}
+
 /* Professional data tables */
 .data-table {
   border-collapse: collapse;
