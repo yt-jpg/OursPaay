@@ -1,0 +1,28 @@
+
+DOMException {}
+
+Auth check failed: 
+SyntaxError {message: "Failed to execute 'json' on 'Response': Unexpected token '<', "<!DOCTYPE "... is not valid JSON"}
+
+useEffect is not defined
+useEffect is not defined
+The above error occurred in the <LoginForm> component:
+
+    at LoginForm (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/components/auth/LoginForm.tsx:47:37)
+    at AuthPage (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/pages/auth.tsx:41:31)
+    at ProtectedRoute (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/App.tsx?v=51jfAB3B7zZOddgyQ89cy:33:38)
+    at component
+    at Route (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=64a52723:323:16)
+    at Switch (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/wouter.js?v=64a52723:379:17)
+    at Router
+    at AppContent (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/App.tsx?v=51jfAB3B7zZOddgyQ89cy:130:31)
+    at Provider (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/chunk-DAKDTFIW.js?v=64a52723:48:15)
+    at TooltipProvider (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=64a52723:61:5)
+    at I18nProvider (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/contexts/i18nContext.tsx:21:32)
+    at AuthProvider (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/src/contexts/AuthContext.tsx:21:32)
+    at QueryClientProvider (https://27b9733a-3781-4cd5-9ccb-130d0ae1a75b-00-1hg9thgwh0jk6.picard.replit.dev/@fs/home/runner/workspace/node_modules/.vite/deps/@tanstack_react-query.js?v=64a52723:2805:3)
+    at App
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+useEffect is not defined
