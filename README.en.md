@@ -1,34 +1,7 @@
-# 💳 Modern Billing Platform
+# Billing Platform — README (EN-US)
 
-A complete and functional platform for **debt and payment management** that serves both **debtors** and **payers** (individuals and companies).  
-Includes **admin dashboard**, **user panel**, **payment module**, **AI-powered chat support**, **multi-language support**, and full **GDPR/LGPD compliance**.
-
----
-
-## 🚀 Project Preview
-🔹 **System Architecture**  
-![Architecture](docs/images/architecture.png)
-
-🔹 **Main Dashboard (Admin)**  
-![Dashboard](docs/images/dashboard.png)
-
-🔹 **Online Preview (when hosted):**  
-👉 [Access Platform](https://example.com)  
-
-🔑 **Test Credentials**  
-- **Admin:** admin@example.com / password: `admin123`  
-- **User:** user@example.com / password: `user123`  
-
----
-
-## 🛠️ Tech Stack
-- **Frontend:** React.js (Next.js optional), TailwindCSS  
-- **Backend:** Node.js (Express / NestJS)  
-- **Database:** PostgreSQL / MySQL  
-- **Authentication:** JWT + 2FA  
-- **Payments:** PIX, Boleto, Credit Card (Stripe/PayPal), Crypto (BTC/ETH)  
-- **Infrastructure:** Docker, Nginx, CI/CD  
-- **Security:** AES encryption, SSL/TLS, GDPR/LGPD compliance  
+## 🚀 Overview
+Modern, multilingual billing platform (pt-BR, en, es, ru), accessible and secure, supporting payments (PIX, credit card, boleto, crypto), real-time notifications, AI-powered chat, and referral system.
 
 ---
 
@@ -36,61 +9,72 @@ Includes **admin dashboard**, **user panel**, **payment module**, **AI-powered c
 
 ```mermaid
 flowchart TD
-    A[User] -->|Login/Signup| B[Frontend - React/Tailwind]
-    B -->|API REST/GraphQL| C[Backend - Node.js]
-    C --> D[(SQL Database)]
-    C --> E[Payment Services (PIX, Stripe, PayPal, Crypto)]
-    C --> F[Notification Service - Email/SMS/Push]
-    C --> G[AI Chat Integration - GPT API]
-    G --> C
-    D --> C
+    A[User] -->|Access| B[Frontend React]
+    B -->|API Call| C[Backend NestJS/Django]
+    C --> D[(PostgreSQL Database)]
+    C --> E[(Redis - Cache/Sessions)]
+    C --> F[Payment Services]
+    F --> F1[PIX]
+    F --> F2[Stripe]
+    F --> F3[PayPal]
+    C --> G[Notification Service]
+    G --> G1[Web Push]
+    G --> G2[FCM - Android]
+    G --> G3[APNs - iOS]
+    G --> G4[WNS - Windows]
+    C --> H[AI Integration - Chatbot API]
+    C --> I[Logging & Audit Service]
 ```
 
 ---
 
-## ⚙️ Features
-✅ Multi-option signup & login (email, Google, Facebook, TikTok)  
-✅ 2FA + password reset  
-✅ Full Admin Dashboard (user, billing & logs management)  
-✅ User Panel (history, debts, billing, profile)  
-✅ Billing & payments module with multiple methods  
-✅ Cashback and promotional system configurable  
-✅ WhatsApp-like chat + AI-powered support integration  
-✅ Real-time notifications (push, SMS, email)  
-✅ Logs & audit trail for all actions  
-✅ Multi-language (EN, PT-BR, ES, RU)  
-✅ Full accessibility (light/dark mode, high contrast, PWD support)  
-✅ Advanced security against attacks + source-code inspection blocking  
+## ⚙️ Tech Stack
+- **Frontend**: React + TailwindCSS  
+- **Backend**: NestJS (TypeScript) or Django (Python)  
+- **Database**: PostgreSQL, Redis  
+- **Messaging/Queues**: Kafka or RabbitMQ  
+- **Infrastructure**: Docker, Kubernetes, CI/CD  
+- **AI**: API integration (OpenAI, Anthropic, or self-hosted)
 
 ---
 
-## 📸 Main Screens
-- **Login & Signup**  
-- **Dashboard (Admin & User)**  
-- **AI Chat**  
-- **Payments Module**  
-
-*(add more images in `/docs/images/` as we generate mockups)*
+## 🔑 Features
+- Secure authentication (2FA, OAuth)  
+- Advanced admin dashboard with roles/permissions  
+- Billing, payments, and digital wallet  
+- Cashback & referral system  
+- AI-powered chat + human support fallback  
+- Real-time notifications (Web/Mobile/Desktop)  
+- Accessibility WCAG 2.1 AA  
+- Logs & audit trail, LGPD/GDPR compliance  
 
 ---
 
-## 🔒 Security
-- **LGPD/GDPR compliance**  
-- Metadata logging (**timestamp, IP, device, hash**) for all contracts  
-- Immutable audit logs  
-- Sensitive data encryption (AES + SSL/TLS)  
-- Code inspection blocking (shortcuts, F12, right-click)  
+## 📸 Previews
+![Architecture Diagram](docs/images/architecture.png)  
+![Dashboard](docs/images/dashboard.png)  
+
+---
+
+## 📢 Notifications
+- Cross-platform push (Web, Android, iOS, Windows)  
+- User-configurable preferences  
+
+---
+
+## 🔐 Security
+- OWASP Top 10 mitigations  
+- TLS 1.3 + AES-256 encryption  
+- Rate limiting, WAF & pentests  
+- Browser code inspection blocking (attempted)  
 
 ---
 
 ## 🤝 Contribution
-1. Fork this repository  
-2. Create a branch (`git checkout -b feature/new-feature`)  
-3. Commit your changes (`git commit -m "feat: new feature"`)  
-4. Push to branch (`git push origin feature/new-feature`)  
-5. Open a Pull Request 🚀  
+Pull requests are welcome. Before contributing, please read the `CONTRIBUTING.md` guidelines (to be created).
 
 ---
 
-## 📜 License
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+## 📄 License
+This project is licensed under MIT. See [LICENSE](LICENSE).
+

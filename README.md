@@ -1,34 +1,7 @@
-# 💳 Plataforma de Cobranças Moderna
+# Plataforma de Cobranças — README (PT-BR)
 
-Plataforma completa e funcional de **gestão de cobranças e pagamentos** que atende tanto **devedores** quanto **pagadores** (pessoas físicas e jurídicas).  
-Inclui **painel administrativo**, **painel do usuário**, **módulo de pagamentos**, **chat com IA integrada**, **suporte multi-idiomas** e conformidade com **LGPD**.
-
----
-
-## 🚀 Preview do Projeto
-🔹 **Arquitetura do Sistema**  
-![Arquitetura](docs/images/architecture.png)
-
-🔹 **Dashboard Principal (Admin)**  
-![Dashboard](docs/images/dashboard.png)
-
-🔹 **Preview Online (quando hospedado):**  
-👉 [Acessar Plataforma](https://exemplo.com)  
-
-🔑 **Credenciais de Teste**  
-- **Admin:** admin@exemplo.com / senha: `admin123`  
-- **Usuário:** user@exemplo.com / senha: `user123`  
-
----
-
-## 🛠️ Stack Tecnológica
-- **Frontend:** React.js (Next.js opcional), TailwindCSS  
-- **Backend:** Node.js (Express / NestJS)  
-- **Banco de Dados:** PostgreSQL / MySQL  
-- **Autenticação:** JWT + 2FA  
-- **Pagamentos:** PIX, Boleto, Cartão (Stripe/PayPal), Cripto (BTC/ETH)  
-- **Infraestrutura:** Docker, Nginx, CI/CD  
-- **Segurança:** Criptografia AES, SSL/TLS, LGPD compliance  
+## 🚀 Visão Geral
+Plataforma de cobranças moderna, multilíngue (pt-BR, en, es, ru), acessível e segura, com suporte a pagamentos (PIX, cartão, boleto, cripto), notificações em tempo real, chat com IA e sistema de indicações.
 
 ---
 
@@ -36,61 +9,72 @@ Inclui **painel administrativo**, **painel do usuário**, **módulo de pagamento
 
 ```mermaid
 flowchart TD
-    A[Usuário] -->|Login/Cadastro| B[Frontend - React/Tailwind]
-    B -->|API REST/GraphQL| C[Backend - Node.js]
-    C --> D[(Banco de Dados SQL)]
-    C --> E[Serviços de Pagamento (PIX, Stripe, PayPal, Cripto)]
-    C --> F[Serviço de Notificações - E-mail/SMS/Push]
-    C --> G[Integração Chat IA - API GPT]
-    G --> C
-    D --> C
+    A[Usuário] -->|Acessa| B[Frontend React]
+    B -->|Chamada API| C[Backend NestJS/Django]
+    C --> D[(Banco de Dados PostgreSQL)]
+    C --> E[(Redis - Cache/Sessões)]
+    C --> F[Serviços de Pagamento]
+    F --> F1[PIX]
+    F --> F2[Stripe]
+    F --> F3[PayPal]
+    C --> G[Serviço de Notificações]
+    G --> G1[Web Push]
+    G --> G2[FCM - Android]
+    G --> G3[APNs - iOS]
+    G --> G4[WNS - Windows]
+    C --> H[Integração IA - Chatbot API]
+    C --> I[Serviço de Logs e Auditoria]
 ```
 
 ---
 
-## ⚙️ Funcionalidades
-✅ Cadastro e login com múltiplas opções (e-mail, Google, Facebook, TikTok)  
-✅ 2FA + redefinição de senha  
-✅ Painel Administrativo completo (gestão de usuários, cobranças, logs)  
-✅ Painel do Usuário (histórico, dívidas, cobranças, perfil)  
-✅ Módulo de cobranças & pagamentos com múltiplos métodos  
-✅ Sistema de cashback e promoções configuráveis  
-✅ Chat estilo WhatsApp + Suporte via IA integrada  
-✅ Notificações em tempo real (push, SMS, e-mail)  
-✅ Logs e auditoria de todas as ações  
-✅ Multi-idiomas (PT-BR, EN, ES, RU)  
-✅ Acessibilidade total (modo claro/escuro, alto contraste, suporte PCDs)  
-✅ Segurança avançada contra ataques + bloqueio de inspeção de código  
+## ⚙️ Stack Tecnológica
+- **Frontend**: React + TailwindCSS  
+- **Backend**: NestJS (TypeScript) ou Django (Python)  
+- **Banco de Dados**: PostgreSQL, Redis  
+- **Mensageria/Filas**: Kafka ou RabbitMQ  
+- **Infra**: Docker, Kubernetes, CI/CD  
+- **IA**: Integração via API (OpenAI, Anthropic ou self-hosted)
 
 ---
 
-## 📸 Telas Principais
-- **Login & Cadastro**  
-- **Dashboard (Admin & Usuário)**  
-- **Chat com IA**  
-- **Módulo de Pagamentos**  
-
-*(adicione aqui mais imagens em `/docs/images/` conforme gerarmos os mockups)*
+## 🔑 Funcionalidades
+- Autenticação segura (2FA, OAuth)  
+- Painel administrativo com permissões avançadas  
+- Cobranças, pagamentos e carteira digital  
+- Cashback e sistema de indicações  
+- Chat com IA + suporte humano  
+- Notificações em tempo real (Web/Mobile/Desktop)  
+- Acessibilidade WCAG 2.1 AA  
+- Logs e auditoria compatíveis com LGPD  
 
 ---
 
-## 🔒 Segurança
-- Conformidade **LGPD**  
-- Registro de **metadados (timestamp, IP, device, hash)** em todos os contratos  
-- Logs imutáveis de auditoria  
-- Criptografia de dados sensíveis (AES + SSL/TLS)  
-- Bloqueio de inspeção de código (atalhos, F12, clique direito)  
+## 📸 Pré-visualizações
+![Diagrama de Arquitetura](docs/images/architecture.png)  
+![Dashboard](docs/images/dashboard.png)  
+
+---
+
+## 📢 Notificações
+- Push cross-platform (Web, Android, iOS, Windows)  
+- Preferências configuráveis por usuário  
+
+---
+
+## 🔐 Segurança
+- Proteção contra ataques (OWASP Top 10)  
+- Criptografia TLS 1.3 + AES-256  
+- Rate limiting, WAF e auditorias de segurança  
+- Bloqueio de inspeção de código no navegador (tentativa)  
 
 ---
 
 ## 🤝 Contribuição
-1. Faça um fork do repositório  
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)  
-3. Commit suas alterações (`git commit -m "feat: nova funcionalidade"`)  
-4. Faça push (`git push origin feature/nova-funcionalidade`)  
-5. Abra um Pull Request 🚀  
+Pull requests são bem-vindos. Antes de contribuir, leia as diretrizes em `CONTRIBUTING.md` (a ser criado).
 
 ---
 
-## 📜 Licença
-Este projeto está sob a licença **MIT** – veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## 📄 Licença
+Este projeto está sob licença MIT. Veja o arquivo [LICENSE](LICENSE).
+
