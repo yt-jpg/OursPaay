@@ -1,22 +1,36 @@
+
 import { useState, useEffect } from 'react';
 import LoginForm from '@/components/auth/LoginForm';
 import ContractModal from '@/components/auth/ContractModal';
 import { useAuth } from '@/hooks/useAuth';
 import { useLocation } from 'wouter';
 import { useTheme } from '@/hooks/useTheme';
+import { useI18n } from '@/contexts/i18nContext';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Globe, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+const languages = [
+  { code: 'pt-BR', name: 'Português (BR)', flag: '🇧🇷', countryCode: '+55' },
+  { code: 'en', name: 'English', flag: '🇺🇸', countryCode: '+1' },
+  { code: 'es', name: 'Español', flag: '🇪🇸', countryCode: '+34' },
+  { code: 'ru', name: 'Русский', flag: '🇷🇺', countryCode: '+7' },
+];
 
 export default function AuthPage() {
   const { isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
   const [showContracts, setShowContracts] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { language, changeLanguage } = useI18n();
 
   useEffect(() => {
     if (isAuthenticated) {
-      // Check if user needs to accept contracts
-      // In a real app, this would be determined by backend
       const hasAcceptedContracts = localStorage.getItem('contractsAccepted');
       
       if (!hasAcceptedContracts) {
@@ -41,7 +55,6 @@ export default function AuthPage() {
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+Shift+K
       if (
         e.key === 'F12' ||
         (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'K')) ||
@@ -61,10 +74,39 @@ export default function AuthPage() {
     };
   }, []);
 
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
+
   if (isAuthenticated && showContracts) {
     return (
       <>
-        <div className="fixed top-4 right-4 z-50">
+        <div className="fixed top-4 right-4 z-50 flex gap-3">
+          {/* Language Selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110"
+              >
+                <Globe className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {languages.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  className="flex items-center gap-2"
+                >
+                  <span className="text-lg">{lang.flag}</span>
+                  <span>{lang.name}</span>
+                  {language === lang.code && <span className="ml-auto text-primary">✓</span>}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Theme Toggle */}
           <Button
             variant="outline"
             size="icon"
@@ -89,12 +131,48 @@ export default function AuthPage() {
 
   return (
     <>
-      <div className="fixed top-4 right-4 z-50">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="auth-background"></div>
+        <div className="auth-gradient-orb auth-orb-1"></div>
+        <div className="auth-gradient-orb auth-orb-2"></div>
+        <div className="auth-gradient-orb auth-orb-3"></div>
+      </div>
+
+      {/* Control Buttons */}
+      <div className="fixed top-4 right-4 z-50 flex gap-3">
+        {/* Language Selector */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110 bg-background/80 backdrop-blur-sm"
+            >
+              <Globe className="h-5 w-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-sm">
+            {languages.map((lang) => (
+              <DropdownMenuItem
+                key={lang.code}
+                onClick={() => changeLanguage(lang.code)}
+                className="flex items-center gap-2 cursor-pointer"
+              >
+                <span className="text-lg">{lang.flag}</span>
+                <span>{lang.name}</span>
+                {language === lang.code && <span className="ml-auto text-primary">✓</span>}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        {/* Theme Toggle */}
         <Button
           variant="outline"
           size="icon"
           onClick={toggleTheme}
-          className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110"
+          className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110 bg-background/80 backdrop-blur-sm"
         >
           {theme === 'dark' ? (
             <Sun className="h-5 w-5 text-amber-500" />
@@ -103,7 +181,8 @@ export default function AuthPage() {
           )}
         </Button>
       </div>
-      <LoginForm />
+
+      <LoginForm currentLanguage={currentLanguage} />
     </>
   );
 }
