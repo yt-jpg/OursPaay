@@ -89,7 +89,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-background to-secondary/10 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
         <div className="w-full max-w-md">
           {/* Logo and Header */}
           <div className="text-center mb-8">
@@ -253,7 +253,7 @@ export default function LoginForm() {
                     <div className="w-full border-t border-border"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-card text-muted-foreground">ou continue com</span>
+                    <span className="px-2 bg-background text-muted-foreground">ou continue com</span>
                   </div>
                 </div>
 
@@ -295,7 +295,7 @@ export default function LoginForm() {
                   Não tem uma conta?{' '}
                   <Button
                     variant="link"
-                    className="p-0 h-auto font-normal"
+                    className="p-0 h-auto font-normal text-primary"
                     onClick={handleToggleMode}
                   >
                     {isLogin ? t('auth.register') : t('auth.login')}
@@ -310,11 +310,11 @@ export default function LoginForm() {
             <select
               value={language}
               onChange={(e) => changeLanguage(e.target.value)}
-              className="bg-transparent border-none text-sm text-muted-foreground cursor-pointer focus:outline-none"
+              className="bg-background text-foreground border border-border rounded-md px-3 py-1 text-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
               data-testid="language-selector"
             >
               {languages.map(lang => (
-                <option key={lang.code} value={lang.code}>
+                <option key={lang.code} value={lang.code} className="bg-background text-foreground">
                   {lang.name}
                 </option>
               ))}
