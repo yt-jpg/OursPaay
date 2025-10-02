@@ -15,7 +15,7 @@ export default function LoginForm() {
   const { login } = useAuth();
   const { t, changeLanguage, language } = useI18n();
   const { toast } = useToast();
-  
+
   const [activeTab, setActiveTab] = useState('email');
   const [formData, setFormData] = useState({
     login: '',
@@ -25,6 +25,21 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showTwoFactor, setShowTwoFactor] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+
+
+  // Clear form data when switching between login and register
+  const handleToggleMode = () => {
+    setFormData({
+      email: '',
+      password: '',
+      username: '',
+      firstName: '',
+      lastName: '',
+      phone: '',
+    });
+    setIsLogin(!isLogin);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +47,7 @@ export default function LoginForm() {
 
     try {
       const result = await login(formData);
-      
+
       if (result.requiresTwoFactor) {
         setShowTwoFactor(true);
       } else {
@@ -278,9 +293,13 @@ export default function LoginForm() {
               <div className="text-center">
                 <p className="text-sm text-muted-foreground">
                   Não tem uma conta?{' '}
-                  <a href="#" className="text-primary font-semibold hover:underline">
-                    Cadastre-se gratuitamente
-                  </a>
+                  <Button
+                    variant="link"
+                    className="p-0 h-auto font-normal"
+                    onClick={handleToggleMode}
+                  >
+                    {isLogin ? t('auth.register') : t('auth.login')}
+                  </Button>
                 </p>
               </div>
             </CardContent>

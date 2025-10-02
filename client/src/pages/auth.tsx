@@ -3,11 +3,15 @@ import LoginForm from '@/components/auth/LoginForm';
 import ContractModal from '@/components/auth/ContractModal';
 import { useAuth } from '@/hooks/useAuth';
 import { useLocation } from 'wouter';
+import { useTheme } from '@/hooks/useTheme';
+import { Button } from '@/components/ui/button';
+import { Moon, Sun } from 'lucide-react';
 
 export default function AuthPage() {
   const { isAuthenticated } = useAuth();
   const [, setLocation] = useLocation();
   const [showContracts, setShowContracts] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -59,13 +63,39 @@ export default function AuthPage() {
 
   if (isAuthenticated && showContracts) {
     return (
-      <ContractModal
-        isOpen={showContracts}
-        onClose={() => setShowContracts(false)}
-        onSuccess={handleContractsAccepted}
-      />
+      <>
+        <div className="fixed top-4 right-4 z-50">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={toggleTheme}
+            className="rounded-full"
+          >
+            {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </Button>
+        </div>
+        <ContractModal
+          isOpen={showContracts}
+          onClose={() => setShowContracts(false)}
+          onSuccess={handleContractsAccepted}
+        />
+      </>
     );
   }
 
-  return <LoginForm />;
+  return (
+    <>
+      <div className="fixed top-4 right-4 z-50">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleTheme}
+          className="rounded-full"
+        >
+          {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
+      <LoginForm />
+    </>
+  );
 }
