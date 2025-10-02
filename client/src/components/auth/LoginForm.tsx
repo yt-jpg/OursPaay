@@ -19,6 +19,8 @@ import {
 } from '@/components/ui/select';
 import TwoFactorModal from './TwoFactorModal';
 
+import { languages } from '@/pages/auth';
+
 interface Language {
   code: string;
   name: string;
@@ -63,9 +65,9 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
   const [showTwoFactor, setShowTwoFactor] = useState(false);
 
   // Update country code when language changes
-  useState(() => {
+  useEffect(() => {
     setCountryCode(currentLanguage.countryCode);
-  });
+  }, [currentLanguage.countryCode]);
 
   const handleToggleMode = () => {
     setFormData({
@@ -127,25 +129,32 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
       <div className="min-h-screen flex items-center justify-center p-4 overflow-hidden">
         <div className="w-full max-w-md">
           {/* Logo and Header */}
-          <div className="text-center mb-8 animate-fade-in">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-2xl mb-4 shadow-lg">
-              <Wallet className="h-8 w-8 text-primary-foreground" />
-            </div>
-            <h1 className="text-3xl font-bold text-foreground mb-2">OursPaay</h1>
-            <p className="text-muted-foreground">{t('auth.welcome')}</p>
+          <div className="text-center mb-6 animate-fade-in">
+            <a 
+              href="/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block cursor-pointer hover:opacity-80 transition-opacity"
+            >
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-primary rounded-2xl mb-3 shadow-lg">
+                <Wallet className="h-7 w-7 text-primary-foreground" />
+              </div>
+              <h1 className="text-2xl font-bold text-foreground mb-1">OursPaay</h1>
+            </a>
+            <p className="text-sm text-muted-foreground">{t('auth.welcome')}</p>
           </div>
 
           {/* Login/Register Card */}
           <Card className="shadow-xl border border-border bg-card/95 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-center">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-semibold text-center">
                 {isRegister ? t('auth.createAccount') : t('auth.login')}
               </CardTitle>
-              <p className="text-sm text-muted-foreground text-center">
-                {isRegister ? 'Crie sua conta para começar' : 'Entre com sua conta para continuar'}
+              <p className="text-xs text-muted-foreground text-center">
+                {isRegister ? t('auth.createAccountSubtitle') : t('auth.loginSubtitle')}
               </p>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
               {/* Login Method Tabs */}
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList className="grid w-full grid-cols-2">
@@ -318,15 +327,17 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                       <Label htmlFor="phone">{t('auth.phone')} *</Label>
                       <div className="flex gap-2">
                         <Select value={countryCode} onValueChange={setCountryCode}>
-                          <SelectTrigger className="w-[120px]">
-                            <SelectValue />
+                          <SelectTrigger className="w-[100px]">
+                            <SelectValue>
+                              {countryCodes.find(c => c.code === countryCode)?.flag || '🇧🇷'}
+                            </SelectValue>
                           </SelectTrigger>
                           <SelectContent>
                             {countryCodes.map((country) => (
                               <SelectItem key={country.code} value={country.code}>
                                 <span className="flex items-center gap-2">
-                                  <span>{country.flag}</span>
-                                  <span>{country.code}</span>
+                                  <span className="text-lg">{country.flag}</span>
+                                  <span className="text-xs">{country.code}</span>
                                 </span>
                               </SelectItem>
                             ))}
@@ -408,8 +419,8 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                     <div className="absolute inset-0 flex items-center">
                       <div className="w-full border-t border-border"></div>
                     </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="px-2 bg-card text-muted-foreground">ou continue com</span>
+                    <div className="relative flex justify-center text-xs">
+                      <span className="px-2 bg-card text-muted-foreground">{t('auth.orContinueWith')}</span>
                     </div>
                   </div>
 
@@ -445,14 +456,14 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
               )}
 
               {/* Toggle between login and register */}
-              <div className="text-center space-y-3">
+              <div className="text-center space-y-2">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-border"></div>
                   </div>
-                  <div className="relative flex justify-center text-sm">
+                  <div className="relative flex justify-center text-xs">
                     <span className="px-2 bg-card text-muted-foreground">
-                      {isRegister ? '' : 'ou'}
+                      {isRegister ? '' : t('common.or')}
                     </span>
                   </div>
                 </div>
@@ -460,7 +471,7 @@ export default function LoginForm({ currentLanguage }: LoginFormProps) {
                 <Button
                   type="button"
                   variant="outline"
-                  className="w-full"
+                  className="w-full text-sm"
                   onClick={handleToggleMode}
                 >
                   {isRegister ? t('auth.hasAccount') + ' - ' + t('auth.login') : t('auth.noAccount') + ' - ' + t('auth.register')}

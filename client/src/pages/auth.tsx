@@ -7,7 +7,7 @@ import { useLocation } from 'wouter';
 import { useTheme } from '@/hooks/useTheme';
 import { useI18n } from '@/contexts/i18nContext';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Globe, ChevronDown } from 'lucide-react';
+import { Moon, Sun, Globe } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-const languages = [
+export const languages = [
   { code: 'pt-BR', name: 'Português (BR)', flag: '🇧🇷', countryCode: '+55' },
   { code: 'en', name: 'English', flag: '🇺🇸', countryCode: '+1' },
   { code: 'es', name: 'Español', flag: '🇪🇸', countryCode: '+34' },
@@ -88,7 +88,7 @@ export default function AuthPage() {
                 size="icon"
                 className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110"
               >
-                <Globe className="h-5 w-5" />
+                <span className="text-xl">{currentLanguage.flag}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -96,7 +96,7 @@ export default function AuthPage() {
                 <DropdownMenuItem
                   key={lang.code}
                   onClick={() => changeLanguage(lang.code)}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 cursor-pointer"
                 >
                   <span className="text-lg">{lang.flag}</span>
                   <span>{lang.name}</span>
@@ -149,7 +149,7 @@ export default function AuthPage() {
               size="icon"
               className="rounded-full relative theme-toggle-glow transition-all duration-300 hover:scale-110 bg-background/80 backdrop-blur-sm"
             >
-              <Globe className="h-5 w-5" />
+              <span className="text-xl">{currentLanguage.flag}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="bg-background/95 backdrop-blur-sm">

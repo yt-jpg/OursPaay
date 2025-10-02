@@ -605,57 +605,65 @@ button:disabled {
 
 @keyframes authPulse {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.4;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.7;
   }
 }
 
 .auth-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--secondary) / 0.05) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--secondary) / 0.08) 100%);
+  overflow: hidden;
 }
 
 .dark .auth-background {
-  background: linear-gradient(135deg, hsl(var(--primary) / 0.1) 0%, hsl(var(--secondary) / 0.1) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--secondary) / 0.15) 100%);
 }
 
 .auth-gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(100px);
   animation: authFloat 20s ease-in-out infinite, authPulse 4s ease-in-out infinite;
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .auth-orb-1 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, hsl(var(--primary) / 0.3) 0%, transparent 70%);
-  top: -100px;
-  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, hsl(142.1 76.2% 36.3% / 0.4) 0%, transparent 70%);
+  top: -150px;
+  left: -150px;
   animation-delay: 0s;
 }
 
 .auth-orb-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, hsl(var(--accent) / 0.2) 0%, transparent 70%);
-  bottom: -150px;
-  right: -150px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, hsl(217.2 91.2% 59.8% / 0.3) 0%, transparent 70%);
+  bottom: -200px;
+  right: -200px;
   animation-delay: 5s;
 }
 
 .auth-orb-3 {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, hsl(var(--secondary) / 0.25) 0%, transparent 70%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, hsl(262.1 83.3% 57.8% / 0.35) 0%, transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation-delay: 10s;
+}
+
+/* Prevent scroll on auth page */
+body:has(.auth-background) {
+  overflow: hidden;
+  height: 100vh;
 }
 
 @keyframes fadeIn {

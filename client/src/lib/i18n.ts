@@ -24,6 +24,7 @@ const resources = {
       'common.amount': 'Valor',
       'common.date': 'Data',
       'common.description': 'Descrição',
+      'common.or': 'ou',
 
       // Auth
       'auth.login': 'Entrar',
@@ -47,6 +48,9 @@ const resources = {
       'auth.2fa.description': 'Digite o código de 6 dígitos do seu aplicativo autenticador',
       'auth.2fa.verify': 'Verificar',
       'auth.2fa.backup': 'Usar código de backup',
+      'auth.loginSubtitle': 'Entre com sua conta para continuar',
+      'auth.createAccountSubtitle': 'Crie sua conta para começar',
+      'auth.orContinueWith': 'ou continue com',
 
       // Dashboard
       'dashboard.title': 'Dashboard',
@@ -215,6 +219,7 @@ const resources = {
       'common.amount': 'Amount',
       'common.date': 'Date',
       'common.description': 'Description',
+      'common.or': 'or',
 
       // Auth
       'auth.login': 'Sign In',
@@ -238,6 +243,9 @@ const resources = {
       'auth.2fa.description': 'Enter the 6-digit code from your authenticator app',
       'auth.2fa.verify': 'Verify',
       'auth.2fa.backup': 'Use backup code',
+      'auth.loginSubtitle': 'Sign in to your account to continue',
+      'auth.createAccountSubtitle': 'Create your account to get started',
+      'auth.orContinueWith': 'or continue with',
 
       // Dashboard
       'dashboard.title': 'Dashboard',
@@ -261,22 +269,112 @@ const resources = {
   },
   'es': {
     translation: {
-      // Spanish translations...
+      // Common
       'common.save': 'Guardar',
       'common.cancel': 'Cancelar',
+      'common.delete': 'Eliminar',
+      'common.edit': 'Editar',
+      'common.close': 'Cerrar',
+      'common.loading': 'Cargando...',
+      'common.error': 'Error',
+      'common.success': 'Éxito',
+      'common.warning': 'Advertencia',
+      'common.search': 'Buscar',
+      'common.filter': 'Filtrar',
+      'common.export': 'Exportar',
+      'common.download': 'Descargar',
+      'common.upload': 'Subir',
+      'common.actions': 'Acciones',
+      'common.status': 'Estado',
+      'common.amount': 'Monto',
+      'common.date': 'Fecha',
+      'common.description': 'Descripción',
+      'common.or': 'o',
+
+      // Auth
       'auth.login': 'Iniciar Sesión',
+      'auth.register': 'Registrarse',
+      'auth.logout': 'Cerrar Sesión',
+      'auth.email': 'Correo Electrónico',
+      'auth.password': 'Contraseña',
+      'auth.username': 'Nombre de Usuario',
+      'auth.firstName': 'Nombre',
+      'auth.lastName': 'Apellido',
+      'auth.phone': 'Teléfono',
+      'auth.forgotPassword': '¿Olvidó su contraseña?',
+      'auth.rememberMe': 'Recordarme',
+      'auth.noAccount': '¿No tiene una cuenta?',
+      'auth.hasAccount': '¿Ya tiene una cuenta?',
+      'auth.welcome': 'Bienvenido de nuevo',
+      'auth.createAccount': 'Crear Cuenta',
+      'auth.loginSuccess': 'Inicio de sesión exitoso',
+      'auth.loginError': 'Credenciales inválidas',
+      'auth.2fa.title': 'Autenticación de Dos Factores',
+      'auth.2fa.description': 'Ingrese el código de 6 dígitos de su aplicación de autenticación',
+      'auth.2fa.verify': 'Verificar',
+      'auth.2fa.backup': 'Usar código de respaldo',
+      'auth.loginSubtitle': 'Inicie sesión en su cuenta para continuar',
+      'auth.createAccountSubtitle': 'Cree su cuenta para comenzar',
+      'auth.orContinueWith': 'o continúe con',
+
+      // Dashboard
       'dashboard.title': 'Tablero',
-      // Add more translations as needed
+      'dashboard.welcome': 'Bienvenido',
     }
   },
   'ru': {
     translation: {
-      // Russian translations...
+      // Common
       'common.save': 'Сохранить',
       'common.cancel': 'Отмена',
+      'common.delete': 'Удалить',
+      'common.edit': 'Редактировать',
+      'common.close': 'Закрыть',
+      'common.loading': 'Загрузка...',
+      'common.error': 'Ошибка',
+      'common.success': 'Успех',
+      'common.warning': 'Предупреждение',
+      'common.search': 'Поиск',
+      'common.filter': 'Фильтр',
+      'common.export': 'Экспорт',
+      'common.download': 'Скачать',
+      'common.upload': 'Загрузить',
+      'common.actions': 'Действия',
+      'common.status': 'Статус',
+      'common.amount': 'Сумма',
+      'common.date': 'Дата',
+      'common.description': 'Описание',
+      'common.or': 'или',
+
+      // Auth
       'auth.login': 'Войти',
+      'auth.register': 'Регистрация',
+      'auth.logout': 'Выйти',
+      'auth.email': 'Электронная почта',
+      'auth.password': 'Пароль',
+      'auth.username': 'Имя пользователя',
+      'auth.firstName': 'Имя',
+      'auth.lastName': 'Фамилия',
+      'auth.phone': 'Телефон',
+      'auth.forgotPassword': 'Забыли пароль?',
+      'auth.rememberMe': 'Запомнить меня',
+      'auth.noAccount': 'Нет аккаунта?',
+      'auth.hasAccount': 'Уже есть аккаунт?',
+      'auth.welcome': 'Добро пожаловать',
+      'auth.createAccount': 'Создать Аккаунт',
+      'auth.loginSuccess': 'Вход выполнен успешно',
+      'auth.loginError': 'Неверные учетные данные',
+      'auth.2fa.title': 'Двухфакторная Аутентификация',
+      'auth.2fa.description': 'Введите 6-значный код из вашего приложения аутентификации',
+      'auth.2fa.verify': 'Подтвердить',
+      'auth.2fa.backup': 'Использовать резервный код',
+      'auth.loginSubtitle': 'Войдите в свою учетную запись, чтобы продолжить',
+      'auth.createAccountSubtitle': 'Создайте свою учетную запись, чтобы начать',
+      'auth.orContinueWith': 'или продолжите с',
+
+      // Dashboard
       'dashboard.title': 'Панель управления',
-      // Add more translations as needed
+      'dashboard.welcome': 'Добро пожаловать',
     }
   }
 };
