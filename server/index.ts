@@ -1,4 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
+<<<<<<< HEAD
+=======
+import morgan from "morgan";
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -15,6 +19,7 @@ app.use(express.json({
   }
 }));
 app.use(express.urlencoded({ extended: false }));
+<<<<<<< HEAD
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -45,6 +50,11 @@ app.use((req, res, next) => {
 
   next();
 });
+=======
+app.use(morgan("dev")); // Add morgan middleware for logging
+
+// Removing custom JSON logging middleware
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
 
 (async () => {
   const server = await registerRoutes(app);

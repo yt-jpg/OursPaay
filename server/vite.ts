@@ -22,7 +22,16 @@ export function log(message: string, source = "express") {
 export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
+<<<<<<< HEAD
     hmr: { server },
+=======
+    hmr: {
+      server,
+      protocol: 'wss',
+      host: undefined, // Let Vite determine the host
+      clientPort: 443,
+    },
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
     allowedHosts: true as const,
   };
 

@@ -60,7 +60,11 @@ export default {
           "5": "var(--chart-5)",
         },
         sidebar: {
+<<<<<<< HEAD
           DEFAULT: "var(--sidebar-background)",
+=======
+          DEFAULT: "var(--sidebar)",
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
           foreground: "var(--sidebar-foreground)",
           primary: "var(--sidebar-primary)",
           "primary-foreground": "var(--sidebar-primary-foreground)",
@@ -71,9 +75,15 @@ export default {
         },
       },
       fontFamily: {
+<<<<<<< HEAD
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Georgia", "serif"],
         mono: ["var(--font-mono)", "monospace"],
+=======
+        sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "Menlo", "monospace"],
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
       },
       keyframes: {
         "accordion-down": {
@@ -92,6 +102,7 @@ export default {
             height: "0",
           },
         },
+<<<<<<< HEAD
         "fade-in": {
           from: {
             opacity: "0",
@@ -181,12 +192,23 @@ export default {
           },
           to: {
             transform: "scaleY(1)",
+=======
+        slideIn: {
+          "0%": { 
+            transform: "translateX(100%)", 
+            opacity: "0" 
+          },
+          "100%": { 
+            transform: "translateX(0)", 
+            opacity: "1" 
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+<<<<<<< HEAD
         "fade-in": "fade-in 0.5s ease-out",
         "fade-out": "fade-out 0.5s ease-out",
         "slide-in-from-top": "slide-in-from-top 0.3s ease-out",
@@ -265,6 +287,9 @@ export default {
             },
           },
         },
+=======
+        "slide-in": "slideIn 0.3s ease-out",
+>>>>>>> a757380dbfe2d95040e42f9db40e45de5910a0af
       },
     },
   },
